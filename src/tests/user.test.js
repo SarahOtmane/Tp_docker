@@ -8,6 +8,10 @@ const connectDB = require('../services/connectDB');
 
 describe('Users controller', () => {
     beforeAll(async () => { await connectDB(); });
+
+    afterEach(async () => { 
+        User.deleteMany();
+    });
     
     afterAll(async () => { 
         await mongoose.disconnect(); 
@@ -51,14 +55,14 @@ describe('Users controller', () => {
 
         it('should return 409 if the email is already used', async() => {
             await User.create({
-                email: 'sarah@gmail.com',
+                email: 'sarah1@gmail.com',
                 password: 'motdepasse',
             });
 
             const response = await supertest(app)
                 .post('/users/register')
                 .send({
-                    email: 'sarah@gmail.com',
+                    email: 'sarah1@gmail.com',
                     password: 'motdepasse',
                 });
     
@@ -70,7 +74,7 @@ describe('Users controller', () => {
             const response = await supertest(app)
                 .post('/users/register')
                 .send({
-                    email: 'sarah@gmail.com',
+                    email: 'sarah1@gmail.com',
                     password: 'motdepasse',
                 });
     
