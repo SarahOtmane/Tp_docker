@@ -1,6 +1,6 @@
 const express = require('express');
 const swaggerUi = require('swagger-ui-express');
-const swaggerSpec = require('../doc/swagger-config.js');
+const swaggerSpec = require('../docs/swagger-config.js');
 
 const configureServices = (app) => {
     // Swagger documentation route
